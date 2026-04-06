@@ -7,7 +7,7 @@
 #include <cstdlib>
 #include <ctime>
 
-class Name2 {//4.5
+class Name2 {
 private:
     std::string firstName;
     std::string lastName;
@@ -69,13 +69,13 @@ void task45Interactive() {
             }
             else if (t == 2) {
                 fn = Tester::getString("Имя: ");
-                ln = fn = Tester::getString("Фамилия: ");
+                ln = Tester::getString("Фамилия: ");
                 names.push_back(Name2(fn, ln));
             }
             else if (t == 3) {
                 fn = Tester::getString("Имя: ");
                 mn = Tester::getString("Отчество: ");
-                ln = fn = Tester::getString("Фамилия: ");
+                ln = Tester::getString("Фамилия: ");
                 names.push_back(Name2(fn, mn, ln));
             }
             else std::cout << "Неверно\n";

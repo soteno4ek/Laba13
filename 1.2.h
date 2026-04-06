@@ -7,28 +7,33 @@
 #include <cstdlib>
 #include <ctime>
 
-class Human {//1.2
+class Human {
 private:
     std::string name;
-    std::string height;
+    int height;
 
 public:
-    Human(const std::string& n, int h) : name(n), height() {}
+    Human(const std::string& n, int h) : name(n), height(h) {}
 
-    std::string toString() const { return name + ", рост: " + (height); }
-    void print() const { std::cout << toString() << "\n"; }
+    std::string toString() const {
+        return name + ", рост: " + std::to_string(height);
+    }
+
+    void print() const {
+        std::cout << toString() << "\n";
+    }
 };
 
 void task12Interactive() {
     std::cout << "\nЗадача 1.2. Человек. Создайте сущность Человек, которая описывается:\n"
         " Имя : строка\n"
         " Рост : целое число\n"
-        "Может возвращать текстовое представление вида “Name, рост : height”, где Name и\n"
+        "Может возвращать текстовое представление вида \"Name, рост : height\", где Name и\n"
         "height это переменная с именем и ростом.\n"
         "Необходимо создать и вывести на экран следующих людей :\n"
-        " Человек с именем “Клеопатра” и ростом 152\n"
-        " Человек с именем “Пушкин ” и ростом 167\n"
-        " Человек с именем “Владимир ” и ростом 189\n\n";
+        " Человек с именем \"Клеопатра\" и ростом 152\n"
+        " Человек с именем \"Пушкин\" и ростом 167\n"
+        " Человек с именем \"Владимир\" и ростом 189\n\n";
 
     std::vector<Human> humans;
     int choice;
@@ -41,10 +46,12 @@ void task12Interactive() {
         choice = Tester::getInt("Выберите: ");
 
         if (choice == 1) {
-            std::string name; int h;
-            name = Tester::getString("Введите имя: ");
-            h = Tester::getInt("Введите рост: ");
-            if (h > 0) humans.push_back(Human(name, h));
+            std::string name = Tester::getString("Введите имя: ");
+            int h = Tester::getInt("Введите рост: ");
+            if (h > 0) {
+                humans.push_back(Human(name, h));
+                std::cout << "Человек добавлен\n";
+            }
             else std::cout << "Рост должен быть >0\n";
         }
         else if (choice == 2) {
