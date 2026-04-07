@@ -1,0 +1,27 @@
+else if (choice == 3) {
+    if (departments.empty()) {
+        std::cout << "Нет отделов для удаления\n";
+        continue;
+    }
+    std::cout << "Выберите отдел для удаления:\n";
+    for (size_t i = 0; i < departments.size(); ++i) {
+        std::cout << i + 1 << ". " << departments[i]->getName() << "\n";
+    }
+    int deptIdx = Tester::getInt("Номер отдела: ") - 1;
+    if (deptIdx >= 0 && deptIdx < (int)departments.size()) {
+        Department* dept = departments[deptIdx];
+        const auto& employees = dept->getEmployees();
+        for (auto emp : employees) {
+            auto it = std::find(allEmployees.begin(), allEmployees.end(), emp);
+            if (it != allEmployees.end()) {
+                delete emp;
+                allEmployees.erase(it);
+            }
+        }
+        delete dept;
+        departments.erase(departments.begin() + deptIdx);
+        std::cout << "Отдел удалён вместе со всеми сотрудниками\n";
+    } else {
+        std::cout << "Неверный номер\n";
+    }
+}
